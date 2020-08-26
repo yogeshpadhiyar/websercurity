@@ -1,0 +1,1 @@
+insert into SpringSecurityData.user_details (id , username , password , enable , role) values(1, "user", "pass",true, "ROLE_USER")

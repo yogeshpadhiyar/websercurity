@@ -1,0 +1,63 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.neosoft.websecuritydemo.WebsecuritydemoApplication'
+		)
+	}
+}
+group = 'com.neosoft'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	// https://mvnrepository.com/artifact/javax.servlet/jstl
+	compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+	// https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper
+	compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.22'
+
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+	compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.5'
+
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
+
+
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	useJUnitPlatform()
+}
